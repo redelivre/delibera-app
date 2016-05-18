@@ -1,0 +1,24 @@
+<ion-view view-title="Intro">
+  <ion-slide-box on-slide-changed="slideChanged(index)">
+    <ion-slide>
+      <div class="slide-content">
+        <h3>Bem-vindo</h3>
+        <button class="button button-block button-balanced" ng-click="next()">Proximo</button>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div class="slide-content">
+        <h3>Tutorial para logadose</h3>
+        <button class="button button-block button-balanced" ng-click="next()">Proximo</button>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div class="slide-content">
+        <h3>Tutorial logados?</h3>
+        <button class="button button-block button-balanced" ng-click="startApp()">
+          INICIE
+        </button>
+      </div>
+    </ion-slide>
+  </ion-slide-box>
+</ion-view>
