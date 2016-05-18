@@ -15,4 +15,12 @@ angular.module('app.controllers', [])
 .controller('paraComeArCtrl', function($scope) {
 
 })
+   
+.controller('loginCtrl', function($scope) {
+
+})
+   
+.controller('novaPautaCtrl', function($scope) {
+
+})
  

@@ -69,6 +69,18 @@ angular.module('app.routes', ['ionicUIRouter'])
     controller: 'paraComeArCtrl'
   })
 
+  .state('login', {
+    url: '/page6',
+    templateUrl: 'templates/login.html',
+    controller: 'loginCtrl'
+  })
+
+  .state('novaPauta', {
+    url: '/nova-pauta',
+    templateUrl: 'templates/novaPauta.html',
+    controller: 'novaPautaCtrl'
+  })
+
 $urlRouterProvider.otherwise('/page5')
 
   
