@@ -85,7 +85,26 @@ angular.module('delibera-app', ['ionic','ionic.service.core', 'delibera-app.cont
       }
     }
   })
+  // add menu pautas
+  .state('app.pautas', {
+    url: "/pautas",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/pautas.html",
+        controller: 'PautasCtrl'
+      }
+    }
+  })
 
+  .state('app.pauta', {
+    url: "/pautas/:pautaId",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/pauta.html",
+        controller: 'PautaCtrl'
+      }
+    }
+  })
   .state('app.custom', {
     url: "/custom",
     views: {
