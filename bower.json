@@ -6,6 +6,7 @@
     "ionic-service-core": "~0.1.10"
   },
   "dependencies": {
-    "wp-api-angularjs": "shprink/wp-api-angularjs#^1.0.0"
+    "wp-api-angularjs": "shprink/wp-api-angularjs#^1.0.0",
+    "lodash": "^4.12.0"
   }
 }

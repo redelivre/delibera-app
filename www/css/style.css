@@ -1,11 +1,12 @@
+
 @font-face {
   font-family: 'Montserrat';
-  src: url('../fonts/Montserrat-Regular.eot'); /* IE9 Compat Modes */
-  src: url('../fonts/Montserrat-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('../fonts/Montserrat-Regular.woff2') format('woff2'), /* Super Modern Browsers */
-       url('../fonts/Montserrat-Regular.woff') format('woff'), /* Pretty Modern Browsers */
-       url('../fonts/Montserrat-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
-       url('../fonts/Montserrat-Regular.svg#svgFontName') format('svg'); /* Legacy iOS */
+  src: url('/lib/ionic/fonts/Montserrat-Regular.eot'); /* IE9 Compat Modes */
+  src: url('/lib/ionic/fonts/Montserrat-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/lib/ionic/fonts/Montserrat-Regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('/lib/ionic/fonts/Montserrat-Regular.woff') format('woff'), /* Pretty Modern Browsers */
+       url('/lib/ionic/fonts/Montserrat-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('/lib/ionic/fonts/Montserrat-Regular.svg#svgFontName') format('svg'); /* Legacy iOS */
 }
 
 .p, .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6, p, button, input, select, textarea, .tab-item {

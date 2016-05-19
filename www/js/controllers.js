@@ -93,6 +93,99 @@ angular.module('delibera-app.controllers', [])
 
 })
 
+.controller('PostCtrl2', function($scope, $stateParams, DataLoader, $ionicLoading, $rootScope, $sce, CacheFactory, $log, Bookmark, $timeout, $wpApiPosts ) {
+
+  // if ( ! CacheFactory.get('postCache') ) {
+  //   CacheFactory.createCache('postCache');
+  // }
+
+  var postCache = []; //CacheFactory.get( 'postCache' );
+
+  $scope.itemID = $stateParams.postId;
+
+  // var singlePostApi = $rootScope.url + 'posts/' + $scope.itemID;
+
+  $scope.loadPost = function() {
+
+    // Fetch remote post
+
+  $scope.posts = [];
+
+    $ionicLoading.show({
+      noBackdrop: true
+    });
+
+    // DataLoader.get( singlePostApi ).then(function(response) {
+
+    //   $scope.post = response.data;
+
+    //   $log.debug($scope.post);
+
+    //   // Don't strip post html
+    //   $scope.content = $sce.trustAsHtml(response.data.content.rendered);
+
+    //   // $scope.comments = $scope.post._embedded['replies'][0];
+
+    //   // add post to our cache
+    //   postCache.put( response.data.id, response.data );
+
+    //   $ionicLoading.hide();
+    // }, function(response) {
+    //   $log.error('error', response);
+    //   $ionicLoading.hide();
+    // });
+
+  }
+
+  if( !postCache.get( $scope.itemID ) ) {
+
+    // Item is not in cache, go get it
+    $wpApiPosts.getList({
+        page: 1,
+        per_page: 10
+    }).then(function (posts) {
+      console.log(posts);
+        $scope.posts = posts.data;
+    });
+
+
+  } else {
+    // Item exists, use cached item
+    $scope.post = postCache.get( $scope.itemID );
+    $scope.content = $sce.trustAsHtml( $scope.post.content.rendered );
+    // $scope.comments = $scope.post._embedded['replies'][0];
+  }
+
+  // Bookmarking
+  $scope.bookmarked = Bookmark.check( $scope.itemID );
+
+  $scope.bookmarkItem = function( id ) {
+    
+    if( $scope.bookmarked ) {
+      Bookmark.remove( id );
+      $scope.bookmarked = false;
+    } else {
+      Bookmark.set( id );
+      $scope.bookmarked = true;
+    }
+  }
+
+  // Pull to refresh
+  $scope.doRefresh = function() {
+  
+    $timeout( function() {
+
+      $scope.loadPost();
+
+      //Stop the ion-refresher from spinning
+      $scope.$broadcast('scroll.refreshComplete');
+    
+    }, 1000);
+      
+  };
+
+})
+
 .controller('PostsCtrl', function( $scope, $http, DataLoader, $timeout, $ionicSlideBoxDelegate, $rootScope, $log ) {
 
   var postsApi = $rootScope.url + 'posts';

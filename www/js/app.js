@@ -31,7 +31,7 @@ angular.module('delibera-app', [
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, CacheFactoryProvider, WpApiProvider) {
 
-  WpApiProvider.setBaseUrl('http://novocnpc.beta.redelivre.org.br/wp-json/');
+  WpApiProvider.setBaseUrl = 'http://novocnpc.beta.redelivre.org.br/wp-json/';
 
   angular.extend(CacheFactoryProvider.defaults, { 
     'storageMode': 'localStorage',
