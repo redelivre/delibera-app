@@ -107,3 +107,14 @@
 .post .item-body p a {
   text-decoration: underline;
 }
+.button.button-balanced.active,
+.button.button-balanced.activated,
+.button.button-balanced {
+  background-color: #A853A0;
+}
+
+.bar.bar-balanced {
+    border-color: #A853A0;
+    background-color: #A853A0;
+    background-image: linear-gradient(0deg,#A853A0,#A853A0 50%,transparent 50%);
+}
