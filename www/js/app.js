@@ -4,7 +4,16 @@
 // 'delibera-app' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'delibera-app.controllers' is found in controllers.js, wpIoinc.services is in services.js
-angular.module('delibera-app', ['ionic','ionic.service.core', 'delibera-app.controllers', 'delibera-app.services', 'delibera-app.filters', 'ngCordova', 'angular-cache'])
+angular.module('delibera-app', [
+  'ionic',
+  'ionic.service.core',
+  'delibera-app.controllers',
+  'delibera-app.services',
+  'delibera-app.filters',
+  'ngCordova',
+  'angular-cache',
+  'wp-api-angularjs'
+])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -20,7 +29,9 @@ angular.module('delibera-app', ['ionic','ionic.service.core', 'delibera-app.cont
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, CacheFactoryProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, CacheFactoryProvider, WpApiProvider) {
+
+  WpApiProvider.setBaseUrl('http://novocnpc.beta.redelivre.org.br/wp-json/');
 
   angular.extend(CacheFactoryProvider.defaults, { 
     'storageMode': 'localStorage',
