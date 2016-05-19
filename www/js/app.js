@@ -9,7 +9,6 @@ angular.module('delibera-app', [
     'delibera-app.controllers',
     'delibera-app.services',
     'delibera-app.filters',
-    'ngCordova',
     'angular-cache'
 ])
 
