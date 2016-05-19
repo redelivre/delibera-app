@@ -2,7 +2,11 @@
 # http://git-scm.com/docs/gitignore
 
 node_modules/
+node_env/
 platforms/
 plugins/
 .io-config.json
 ionic.project
+www/lib/
+www/css/ionic.app.css
+www/css/ionic.app.min.css
