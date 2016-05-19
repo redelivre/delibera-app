@@ -249,6 +249,19 @@ angular.module('delibera-app.controllers', [])
 
 .controller('PautaCtrl', function($scope, $stateParams, DataLoader, $ionicLoading, $rootScope, $sce, CacheFactory, $log, Bookmark, $timeout ) {
 
+//      var commentsApi = $rootScope.url + 'comments/' + $scope.itemID;
+      var commentsApi = $rootScope.url + 'comments?post=' + $scope.itemID;
+
+      $scope.loadComments = function() {
+
+        DataLoader.get( commentsApi ).then(function(response) {
+
+//          $scope.comments = response.data;
+
+          console.log(response);
+        })
+      }
+
   if ( ! CacheFactory.get('pautaCache') ) {
     CacheFactory.createCache('pautaCache');
   }
@@ -271,7 +284,7 @@ angular.module('delibera-app.controllers', [])
 
       $scope.post = response.data;
 
-      $log.debug($scope.post);
+      console.log($scope.post);
 
       // Don't strip post html
       $scope.content = $sce.trustAsHtml(response.data.content.rendered);
@@ -288,7 +301,7 @@ angular.module('delibera-app.controllers', [])
     });
 
   }
-  console.log($scope.itemID);
+
   if( !postCache.get( $scope.itemID ) ) {
 
     // Item is not in cache, go get it
@@ -412,6 +425,9 @@ angular.module('delibera-app.controllers', [])
   };
     
 })
+
+
+
 .controller('TabsCtrl', function($scope) {
 
   // Tabs stuff here
