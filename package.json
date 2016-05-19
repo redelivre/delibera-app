@@ -23,5 +23,8 @@
     "ionic-plugin-keyboard",
     "cordova-plugin-crosswalk-webview@1.2.0"
   ],
-  "cordovaPlatforms": []
+  "cordovaPlatforms": [
+    "android",
+    "ios"
+  ]
 }
