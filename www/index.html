@@ -16,7 +16,10 @@
 
     <script src="lib/angular-cache/dist/angular-cache.min.js"></script>
     <script src="lib/lodash/lodash.js"></script>
-    <script src="lib/wp-api-angularjs/dist/wp-api-angularjs.bundle.min.js"></script>
+    <script>
+     _.contains = _.includes;
+    </script>
+    <script src="lib/wp-api-angularjs/dist/wp-api-angularjs.min.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
