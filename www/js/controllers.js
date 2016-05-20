@@ -9,7 +9,7 @@ angular.module('delibera-app.controllers', [])
 
 })
 
-.controller('PostCtrl1', function($scope, $stateParams, DataLoader, $ionicLoading, $rootScope, $sce, CacheFactory, $log, Bookmark, $timeout ) {
+.controller('PostCtrl', function($scope, $stateParams, DataLoader, $ionicLoading, $rootScope, $sce, CacheFactory, $log, Bookmark, $timeout ) {
 
   if ( ! CacheFactory.get('postCache') ) {
     CacheFactory.createCache('postCache');
@@ -19,7 +19,7 @@ angular.module('delibera-app.controllers', [])
 
   $scope.itemID = $stateParams.postId;
 
-  var singlePostApi = $rootScope.url + 'posts/' + $scope.itemID;
+  var singlePostApi = $rootScope.url + 'pautas/' + $scope.itemID;
 
   $scope.loadPost = function() {
 
@@ -93,21 +93,17 @@ angular.module('delibera-app.controllers', [])
 
 })
 
-.controller('PostCtrl', function($scope, $stateParams, DataLoader, $ionicLoading, $rootScope, $sce, CacheFactory, $log, Bookmark, $timeout, $wpApiPosts ) {
+.controller('PostCtrl1', function($scope, $stateParams, DataLoader, $ionicLoading, $rootScope, $sce, CacheFactory, $log, Bookmark, $timeout, $wpApiPosts ) {
 
   $scope.itemID = $stateParams.postId;
 
   // if( !postCache.get( $scope.itemID ) ) {
 
-    // Item is not in cache, go get it
-    $wpApiPosts.getList({
-        page: 1,
-        per_page: 10
-    }).then(function (posts) {
-      //console.log(posts);
-        $scope.posts = posts.data;
+ 
+   $wpApiPosts.get($scope.itemID,{post_type:'pauta'}).then(function (post) {
+        console.log(post);
+        $scope.post = post.data;
     });
-
 
   // Bookmarking
   $scope.bookmarked = Bookmark.check( $scope.itemID );
@@ -141,7 +137,7 @@ angular.module('delibera-app.controllers', [])
 
 .controller('PostsCtrl', function( $scope, $http, DataLoader, $timeout, $ionicSlideBoxDelegate, $rootScope, $log ) {
 
-  var postsApi = $rootScope.url + 'posts';
+  var postsApi = $rootScope.url + 'pautas';
 
   $scope.moreItems = false;
 
