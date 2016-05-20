@@ -26,10 +26,10 @@
   height: 100%;
 }
 .slider-slide {
-  padding-top: 80px;
+  // padding-top: 80px;
   color: #000;
-  background: url('../img/blurry-app-bg.png') no-repeat center top;
-  background-size: cover;
+  background: url('../img/passo1.png') no-repeat center top;
+  background-size: contain;
   text-align: center;
   /*font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; */
   font-family: 'Montserrat', sans-serif;
@@ -38,9 +38,9 @@
 
 .slide-content {
   position: absolute;
-  bottom: 200px;
+  bottom: 0;
   width: 100%;
-  padding: 20px;
+  padding: 50px 30px;
   box-sizing: border-box;
 }
 
@@ -49,6 +49,15 @@
   margin-bottom: 40px;
 }
 
+.slide2 {
+    background-image: url('../img/passo2.png')
+}
+.slide3 {
+    background-image: url('../img/passo3.png')
+}
+.slide4 {
+    background-image: url('../img/passo4.png')
+}
 /** Posts **/
 
 .post .item.post-title, .post .item.post-title h2 {
