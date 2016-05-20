@@ -3,20 +3,22 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title>delibera-app</title>
+    <title>Delibera</title>
 
     <link href="lib/ionic/css/ionic.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
 
-    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <!-- compiled css output -->
     <link href="css/ionic.app.css" rel="stylesheet">
-    -->
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
-    <script src="lib/ionic-service-core/ionic-core.js"></script>
-    <script src="lib/ng-cordova.min.js"></script>
-    <script src="lib/angular-cache/angular-cache.min.js"></script>
+
+    <script src="lib/angular-cache/dist/angular-cache.min.js"></script>
+    <script src="lib/lodash/lodash.js"></script>
+    <script>
+     _.contains = _.includes;
+    </script>
+    <script src="lib/wp-api-angularjs/dist/wp-api-angularjs.min.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>

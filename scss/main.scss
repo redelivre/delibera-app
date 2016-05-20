@@ -1,0 +1,136 @@
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('../fonts/Montserrat-Regular.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/Montserrat-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       // url('../fonts/Montserrat-Regular.woff2') format('woff2'), /* Super Modern Browsers */
+       // url('../fonts/Montserrat-Regular.woff') format('woff'), /* Pretty Modern Browsers */
+       url('../fonts/Montserrat-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/Montserrat-Regular.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+.p, .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6, p, button, input, select, textarea, .tab-item {
+  font-family: 'Montserrat';
+}
+
+/* Empty. Add your own CSS if you like */
+.item-content p.post-excerpt {
+  white-space: wrap;
+}
+
+.login-modal .close-button .icon::before {
+  font-size: 18px !important;
+}
+
+.slider {
+  height: 100%;
+}
+.slider-slide {
+  padding-top: 80px;
+  color: #000;
+  background: url('../img/blurry-app-bg.png') no-repeat center top;
+  background-size: cover;
+  text-align: center;
+  /*font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; */
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+}
+
+.slide-content {
+  position: absolute;
+  bottom: 200px;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.slide-content h3 {
+  color: #fff;
+  margin-bottom: 40px;
+}
+
+/** Posts **/
+
+.post .item.post-title, .post .item.post-title h2 {
+  overflow: visible;
+  white-space: normal;
+  font-weight: bold;
+}
+.post .item-author {
+    border: none;
+}
+.post .wp-caption.aligncenter {
+    position: relative;
+    margin-bottom: 1.0em;
+    max-width: 100%;
+    overflow: hidden;
+}
+.post .wp-caption .wp-caption-text {
+    margin: 10px 0;
+    text-align: center;
+    font-style: italic;
+}
+.post ul,
+.post ol {
+    margin-top: 0;
+    margin-left: 15px;
+    margin-bottom: 15px;
+}
+.post ul ul,
+.post ol ol {
+    margin-bottom: 0;
+}
+.post .item ul, .post .item ol {
+  color: #666;
+  font-size: 14px;
+}
+.post ol {
+    list-style: decimal;
+}
+.post ul {
+    list-style: disc;
+}
+.post em {
+    font-style: italic;
+}
+
+.post dl {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+.post dt,
+.post dd {
+    line-height: 1;
+}
+.post dt {
+    font-weight: bold;
+}
+.post dd {
+    margin-left: 0;
+}
+.alignright {
+  float: right;
+  margin-left: 15px;
+}
+.alignleft {
+  float: left;
+  margin-right: 15px;
+}
+.post img {
+  max-width: 100%;
+  height: auto;
+}
+.post .item-body p a {
+  text-decoration: underline;
+}
+.button.button-balanced.active,
+.button.button-balanced.activated,
+.button.button-balanced {
+  background-color: #A853A0;
+}
+
+.bar.bar-balanced {
+    border-color: #A853A0;
+    background-color: #A853A0;
+    background-image: linear-gradient(0deg,#A853A0,#A853A0 50%,transparent 50%);
+}

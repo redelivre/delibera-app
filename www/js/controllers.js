@@ -9,7 +9,7 @@ angular.module('delibera-app.controllers', [])
 
 })
 
-.controller('PostCtrl', function($scope, $stateParams, DataLoader, $ionicLoading, $rootScope, $sce, CacheFactory, $log, Bookmark, $timeout ) {
+.controller('PostCtrl1', function($scope, $stateParams, DataLoader, $ionicLoading, $rootScope, $sce, CacheFactory, $log, Bookmark, $timeout ) {
 
   if ( ! CacheFactory.get('postCache') ) {
     CacheFactory.createCache('postCache');
@@ -33,7 +33,7 @@ angular.module('delibera-app.controllers', [])
 
       $scope.post = response.data;
 
-      $log.debug($scope.post);
+      //$log.debug($scope.post);
 
       // Don't strip post html
       $scope.content = $sce.trustAsHtml(response.data.content.rendered);
@@ -93,6 +93,52 @@ angular.module('delibera-app.controllers', [])
 
 })
 
+.controller('PostCtrl', function($scope, $stateParams, DataLoader, $ionicLoading, $rootScope, $sce, CacheFactory, $log, Bookmark, $timeout, $wpApiPosts ) {
+
+  $scope.itemID = $stateParams.postId;
+
+  // if( !postCache.get( $scope.itemID ) ) {
+
+    // Item is not in cache, go get it
+    $wpApiPosts.getList({
+        page: 1,
+        per_page: 10
+    }).then(function (posts) {
+      //console.log(posts);
+        $scope.posts = posts.data;
+    });
+
+
+  // Bookmarking
+  $scope.bookmarked = Bookmark.check( $scope.itemID );
+
+  $scope.bookmarkItem = function( id ) {
+    
+    if( $scope.bookmarked ) {
+      Bookmark.remove( id );
+      $scope.bookmarked = false;
+    } else {
+      Bookmark.set( id );
+      $scope.bookmarked = true;
+    }
+  }
+
+  // Pull to refresh
+  $scope.doRefresh = function() {
+  
+    $timeout( function() {
+
+      $scope.loadPost();
+
+      //Stop the ion-refresher from spinning
+      $scope.$broadcast('scroll.refreshComplete');
+    
+    }, 1000);
+      
+  };
+
+})
+
 .controller('PostsCtrl', function( $scope, $http, DataLoader, $timeout, $ionicSlideBoxDelegate, $rootScope, $log ) {
 
   var postsApi = $rootScope.url + 'posts';
@@ -108,7 +154,7 @@ angular.module('delibera-app.controllers', [])
 
       $scope.moreItems = true;
 
-      $log.log(postsApi, response.data);
+      //$log.log(postsApi, response.data);
 
     }, function(response) {
       $log.log(postsApi, response.data);
