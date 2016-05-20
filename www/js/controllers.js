@@ -33,7 +33,7 @@ angular.module('delibera-app.controllers', [])
 
       $scope.post = response.data;
 
-      $log.debug($scope.post);
+      //$log.debug($scope.post);
 
       // Don't strip post html
       $scope.content = $sce.trustAsHtml(response.data.content.rendered);
@@ -104,7 +104,7 @@ angular.module('delibera-app.controllers', [])
         page: 1,
         per_page: 10
     }).then(function (posts) {
-      console.log(posts);
+      //console.log(posts);
         $scope.posts = posts.data;
     });
 
@@ -154,7 +154,7 @@ angular.module('delibera-app.controllers', [])
 
       $scope.moreItems = true;
 
-      $log.log(postsApi, response.data);
+      //$log.log(postsApi, response.data);
 
     }, function(response) {
       $log.log(postsApi, response.data);

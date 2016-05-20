@@ -28,7 +28,7 @@ angular.module('delibera-app.services', [])
     },
     get: function(id) {
       bookmarkCache.get( id );
-      console.log( id );
+      //console.log( id );
     },
     check: function(id) {
       var keys = bookmarkCache.keys();
