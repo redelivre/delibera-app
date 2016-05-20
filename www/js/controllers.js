@@ -3,7 +3,7 @@ angular.module('delibera-app.controllers', [])
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $sce, DataLoader, $rootScope, $log ) {
   
   // Enter your site url here. You must have the WP-API v2 installed on this site. Leave /wp-json/wp/v2/ at the end.
-  $rootScope.url = 'http://novocnpc.beta.redelivre.org.br/wp-json/wp/v2/';
+  $rootScope.url = 'http://cnpc.cultura.gov.br/wp-json/wp/v2/';
 
   // $rootScope.callback = '_jsonp=JSON_CALLBACK';
 
