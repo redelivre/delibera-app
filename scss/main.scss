@@ -1,12 +1,12 @@
 
 @font-face {
   font-family: 'Montserrat';
-  src: url('/lib/ionic/fonts/Montserrat-Regular.eot'); /* IE9 Compat Modes */
-  src: url('/lib/ionic/fonts/Montserrat-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('/lib/ionic/fonts/Montserrat-Regular.woff2') format('woff2'), /* Super Modern Browsers */
-       url('/lib/ionic/fonts/Montserrat-Regular.woff') format('woff'), /* Pretty Modern Browsers */
-       url('/lib/ionic/fonts/Montserrat-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
-       url('/lib/ionic/fonts/Montserrat-Regular.svg#svgFontName') format('svg'); /* Legacy iOS */
+  src: url('../fonts/Montserrat-Regular.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/Montserrat-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       // url('../fonts/Montserrat-Regular.woff2') format('woff2'), /* Super Modern Browsers */
+       // url('../fonts/Montserrat-Regular.woff') format('woff'), /* Pretty Modern Browsers */
+       url('../fonts/Montserrat-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/Montserrat-Regular.svg#svgFontName') format('svg'); /* Legacy iOS */
 }
 
 .p, .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6, p, button, input, select, textarea, .tab-item {
@@ -15,21 +15,21 @@
 
 /* Empty. Add your own CSS if you like */
 .item-content p.post-excerpt {
-	white-space: wrap;
+  white-space: wrap;
 }
 
 .login-modal .close-button .icon::before {
-	font-size: 18px !important;
+  font-size: 18px !important;
 }
 
 .slider {
   height: 100%;
 }
 .slider-slide {
-  padding-top: 80px;
+  // padding-top: 80px;
   color: #000;
-  background: url('../img/blurry-app-bg.png') no-repeat center top;
-  background-size: cover;
+  background: url('../img/passo1.png') no-repeat center top;
+  background-size: contain;
   text-align: center;
   /*font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; */
   font-family: 'Montserrat', sans-serif;
@@ -37,24 +37,33 @@
 }
 
 .slide-content {
-	position: absolute;
-	bottom: 200px;
-	width: 100%;
-	padding: 20px;
-	box-sizing: border-box;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 50px 30px;
+  box-sizing: border-box;
 }
 
 .slide-content h3 {
-	color: #fff;
-	margin-bottom: 40px;
+  color: #fff;
+  margin-bottom: 40px;
 }
 
+.slide2 {
+    background-image: url('../img/passo2.png')
+}
+.slide3 {
+    background-image: url('../img/passo3.png')
+}
+.slide4 {
+    background-image: url('../img/passo4.png')
+}
 /** Posts **/
 
 .post .item.post-title, .post .item.post-title h2 {
-	overflow: visible;
-	white-space: normal;
-	font-weight: bold;
+  overflow: visible;
+  white-space: normal;
+  font-weight: bold;
 }
 .post .item-author {
     border: none;
@@ -81,8 +90,8 @@
     margin-bottom: 0;
 }
 .post .item ul, .post .item ol {
-	color: #666;
-	font-size: 14px;
+  color: #666;
+  font-size: 14px;
 }
 .post ol {
     list-style: decimal;
@@ -109,12 +118,12 @@
     margin-left: 0;
 }
 .alignright {
-	float: right;
-	margin-left: 15px;
+  float: right;
+  margin-left: 15px;
 }
 .alignleft {
-	float: left;
-	margin-right: 15px;
+  float: left;
+  margin-right: 15px;
 }
 .post img {
   max-width: 100%;
