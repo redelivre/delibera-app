@@ -8,42 +8,33 @@
   		<div class="item post-title">
   		<h2 ng-bind-html="post.title.rendered"></h2>
   		</div>
-
-  		<div class="item item-body" ng-if="post.content.rendered" ng-bind-html="post.content.rendered | html_filters"></div>
+  		<div class="item item-body" ng-if="content" ng-bind-html="content | html_filters"></div>
 
       <div class="item tabs tabs-secondary tabs-icon-left">
         <a class="tab-item" href="#">
-          <i class="icon ion-forward"></i>
-          Compartilhar
-        </a>
+        <i class="icon ion-forward"></i>
+        Compartilhar
+      </a>
 
-        <a class="tab-item" href="#">
+        <a class="tab-item" ng-click="curtirItem(post.id)">
           <i class="icon ion-thumbsup"></i>
           {{(post.delibera_numero_curtir)[0]}}
         </a>
 
-        <a class="tab-item" href="#">
+        <a class="tab-item" ng-click="discordarItem(post.id)">
           <i class="icon ion-thumbsdown"></i>
-          {{(post.delibera_numero_discordam)[0]}}
+          {{(post.delibera_numero_discordar)[0]}}
         </a>
 
-        <a class="tab-item" href="#" ng-click="bookmarkItem(post.id)">
+        <a class="tab-item"  ng-click="bookmarkItem(post.id)">
           <i ng-class="{'icon ion-ios-star': bookmarked, 'icon ion-ios-star-outline': !bookmarked}"></i>
-          Favoritar
+          Seguir
         </a>
-
-        <!--a class="tab-item" href="#posts/:">
-          <i class="icon ion-edit"></i>
-          Editar
-        </a-->
-      </div>
-
 
       </div>
     </div>
 
-
-    <!--div class="item item-divider">Comments</div>
+    <div class="item item-divider">Comments</div>
       <ion-list ng-if="comments">
         <ion-item ng-repeat="comment in comments">
           <div class="item-body">
@@ -51,6 +42,6 @@
             <p ng-bind-html="comment.content.rendered"></p>
           </div>
         </ion-item>
-      </ion-list-->
+      </ion-list>
   </ion-content>
 </ion-view>

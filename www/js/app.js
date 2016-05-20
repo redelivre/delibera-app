@@ -94,7 +94,26 @@ angular.module('delibera-app', [
       }
     }
   })
+  // add menu pautas
+  .state('app.pautas', {
+    url: "/pautas",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/pautas.html",
+        controller: 'PautasCtrl'
+      }
+    }
+  })
 
+  .state('app.pauta', {
+    url: "/pautas/:pautaId",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/pauta.html",
+        controller: 'PautaCtrl'
+      }
+    }
+  })
   .state('app.custom', {
     url: "/custom",
     views: {
