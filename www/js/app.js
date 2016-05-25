@@ -30,8 +30,8 @@ angular.module('delibera-app', [
 
 .config(function($httpProvider, $stateProvider, $urlRouterProvider, $ionicConfigProvider, CacheFactoryProvider, WpApiProvider) {
 
-  //WpApiProvider.setBaseUrl('http://delibera.redelivre.org.br/wp-json/');
-  WpApiProvider.setBaseUrl('http://redelivre.pure.za/wp-json/');
+  //WpApiProvider.setBaseUrl('http://redelivre.pure.za/wp-json/');
+  WpApiProvider.setBaseUrl('http://delibera.redelivre.org.br/wp-json/');
 
   angular.extend(CacheFactoryProvider.defaults, {
     'storageMode': 'localStorage',
@@ -183,15 +183,3 @@ angular.module('delibera-app', [
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/intro');
 });
-
-allowCrossDomain = function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
-  if ('OPTIONS' === req.method) {
-    res.send(200);
-  } else {
-    next();
-  }
-};
-
