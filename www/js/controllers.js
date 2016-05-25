@@ -3,7 +3,8 @@ angular.module('delibera-app.controllers', [])
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $sce, DataLoader, $rootScope, $log ) {
   
   // Enter your site url here. You must have the WP-API v2 installed on this site. Leave /wp-json/wp/v2/ at the end.
-  $rootScope.url = 'http://delibera.redelivre.org.br/wp-json/wp/v2/';
+  //$rootScope.url = 'http://delibera.redelivre.org.br/wp-json/jwt-auth/v1/token';
+  $rootScope.url = 'http://redelivre.pure.za/wp-json/wp/v2/';
 
   // $rootScope.callback = '_jsonp=JSON_CALLBACK';
 
@@ -270,18 +271,37 @@ angular.module('delibera-app.controllers', [])
 
 })
 
-.controller('loginCtrl', function($scope, LoginService, $ionicPopup, $state) {
+.controller('loginCtrl', function($scope, $http, $cookies, LoginService, $ionicPopup, $state) {
   $scope.data = {};
-
   $scope.login = function() {
-    LoginService.loginUser($scope.data.username, $scope.data.password).success(function(data) {
-      $state.go('app.logged');
-    }).error(function(data) {
-      var alertPopup = $ionicPopup.alert({
-        title: 'Login failed!',
-        template: 'Please check your credentials!'
-      });
+    //$http.post( 'http://delibera.redelivre.org.br/wp-json/jwt-auth/v1/token', {
+    $http.post( 'http://redelivre.pure.za/wp-json/jwt-auth/v1/token', {
+      username: $scope.data.username,
+      password: $scope.data.password
+    } )
+    .then( function( response ) {
+      //for debug purposes
+      //console.log( response.data );
+      var globals = $cookies.getObject( 'globals' ) || {};
+      globals.currentUser = {};
+      globals.currentUser.token = response.data.token;
+      globals.currentUser.user_display_name = response.data.user_display_name;
+      globals.currentUser.user_email = response.data.user_email;
+      globals.currentUser.user_nicename = response.data.user_nicename;
+      $cookies.putObject( 'globals' , globals);
+    } )
+    .catch( function( error ) {
+      console.error( 'Error' ,  error.data[0] );
     });
+   // LoginService.loginUser($scope.data.username, $scope.data.password).success(function(data) {
+   //   $state.go('app.logged');
+   // }).error(function(data) {
+   //   var alertPopup = $ionicPopup.alert({
+   //     title: 'Login failed!',
+   //     template: 'Please check your credentials!'
+   //   });
+   // });
+   
   }
 })
 
