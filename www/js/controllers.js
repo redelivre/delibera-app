@@ -3,7 +3,7 @@ angular.module('delibera-app.controllers', [])
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $sce, DataLoader, $rootScope, $log ) {
   
   // Enter your site url here. You must have the WP-API v2 installed on this site. Leave /wp-json/wp/v2/ at the end.
-  $rootScope.url = 'http://redelivre.pure.za/wp-json/wp/v2/';
+  $rootScope.url = 'http://delibera.redelivre.org.br/wp-json/wp/v2/';
   //$rootScope.url = 'http://delibera.redelivre.org.br/wp-json/jwt-auth/v1/token';
 
   // $rootScope.callback = '_jsonp=JSON_CALLBACK';
@@ -274,7 +274,6 @@ angular.module('delibera-app.controllers', [])
 .controller('loginCtrl', function($scope, $http, $cookies, LoginService, $ionicPopup, $state) {
   $scope.data = {};
   $scope.login = function() {
-    //$http.post( 'http://redelivre.pure.za/wp-json/jwt-auth/v1/token', {
     $http.post( 'http://delibera.redelivre.org.br/wp-json/jwt-auth/v1/token', {
       username: $scope.data.username,
       password: $scope.data.password
