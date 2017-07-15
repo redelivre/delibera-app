@@ -274,9 +274,12 @@ angular.module('delibera-app.controllers', [])
   $scope.data = {};
 
   $scope.login = function() {
+    console.log("User: "+$scope.data.username);
+    console.log("Pass: "+$scope.data.password);
     LoginService.loginUser($scope.data.username, $scope.data.password).success(function(data) {
       $state.go('app.logged');
     }).error(function(data) {
+      console.log(JSON.stringify(data, null, 4));
       var alertPopup = $ionicPopup.alert({
         title: 'Login failed!',
         template: 'Please check your credentials!'
