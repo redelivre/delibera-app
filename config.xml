@@ -9,6 +9,11 @@
     </author>
     <content src="index.html" />
     <access origin="*" subdomains="true" />
+    <access launch-external="yes" origin="market:*" />
+    <access origin="http://delibera.redelivre.org.br/*" />
+    <allow-navigation href="*" />
+    <allow-navigation href="http://delibera.redelivre.org.br/*" />
+    <allow-intent href="*" />
     <allow-intent origin="*" subdomains="true" />
     <allow-intent launch-external="yes" origin="mailto:*" />
     <allow-intent launch-external="yes" origin="tel:*" />
@@ -81,4 +86,6 @@
     </platform>
     <icon src="resources/android/icon/drawable-xhdpi-icon.png" />
     <engine name="android" spec="^6.2.3" />
+    <plugin name="cordova-plugin-inappbrowser" spec="^1.7.1" />
+    <plugin name="cordova-plugin-whitelist" spec="git+https://github.com/apache/cordova-plugin-whitelist.git" />
 </widget>

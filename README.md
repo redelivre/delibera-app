@@ -22,3 +22,8 @@ npm install -g bower
 bower install
 ionic serve
 ```
+
+## Versions
+
+node v7.10.1
+cordova 

@@ -244,8 +244,45 @@ angular.module('delibera-app.controllers', [])
     
 })
 
-.controller('IntroCtrl', function($scope, $state, $ionicSlideBoxDelegate, $ionicHistory) {
+.controller('IntroCtrl', function($scope, $state, $ionicSlideBoxDelegate, $ionicHistory, oauth1Client) {
 
+  var authorizationProcess = oauth1Client.authorize();
+  console.log(JSON.stringify(authorizationProcess, null, 4));
+
+
+  authorizationProcess.then(function(authorizedHttp) {
+
+    authorizedHttp({
+        method: "POST",
+        url: "http://delibera.redelivre.org.br/wp-json/wp/v2/users",
+        data: {
+            username: "beto",
+            name: "Alberto",
+            password: "beto.,56",
+            email: "beto@redelivre.org.br"
+        }
+    })
+    .then(function(response) {
+        console.log("Usuario criado");
+        alert("New user created!");
+    }, function(response) {
+        console.log("Error! " + JSON.stringify(response, null, 1));
+        alert("Error!"+ JSON.stringify(response, null, 1));
+    });
+
+    authorizedHttp({
+        method: "GET",
+        url: "http://delibera.redelivre.org.br/wp-json/wp/v2/users/me"
+    })
+    .then(function(response) {
+      console.log("Resposta ok: "+response);
+      alert("Success! " + JSON.stringify(response));
+    },
+    function(response) {
+        console.log("Error! " + JSON.stringify(response, null, 4));
+        alert("Error!"+ JSON.stringify(response, null, 1));
+    });
+  });
   // $ionicSlideBoxDelegate.update();
 
   $ionicHistory.nextViewOptions({

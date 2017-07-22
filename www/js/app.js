@@ -10,7 +10,8 @@ angular.module('delibera-app', [
     'delibera-app.services',
     'delibera-app.filters',
     'angular-cache',
-    'wp-api-angularjs'
+    'wp-api-angularjs',
+    'oauth1Client'
 ])
 
 .run(function($ionicPlatform) {
@@ -27,10 +28,20 @@ angular.module('delibera-app', [
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, CacheFactoryProvider, WpApiProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, CacheFactoryProvider, WpApiProvider, oauth1ClientProvider) {
 
-  WpApiProvider.setBaseUrl('http://delibera.redelivre.org.br/wp-json/');
+  var url = "http://delibera.redelivre.org.br/";
+  WpApiProvider.setBaseUrl(url+'wp-json');
+  oauth1ClientProvider.config({
+    consumerKey: 'yjfvX5h51p6k',
+    consumerSecret: 'sujwkaIm0eIhsVtC52dFyDnqXyU1hD124OyjoJ6YcuvMak7R',
+    requestEndpoint: url+'oauth1/request',
+    authorizeEndpoint: url+'oauth1/authorize',
+    accessEndpoint: url+'oauth1/access',
+    oauthCallback: 'http://delibera.redelivre.org.br/success'
+  });
 
+  console.log(JSON.stringify(oauth1ClientProvider, null, 4));
   angular.extend(CacheFactoryProvider.defaults, {
     'storageMode': 'localStorage',
     'capacity': 10,
