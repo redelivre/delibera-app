@@ -4,6 +4,7 @@
     "description": "Delibera",
     "dependencies": {
         "cordova-android": "^6.2.3",
+        "cordova-ios": "^4.4.0",
         "cordova-plugin-inappbrowser": "^1.7.1",
         "cordova-plugin-whitelist": "git+https://github.com/apache/cordova-plugin-whitelist.git",
         "gulp": "^3.5.6",
@@ -34,7 +35,8 @@
     ],
     "cordova": {
         "platforms": [
-            "android"
+            "android",
+            "ios"
         ],
         "plugins": {
             "cordova-plugin-inappbrowser": {},

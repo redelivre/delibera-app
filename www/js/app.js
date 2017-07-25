@@ -34,11 +34,11 @@ angular.module('delibera-app', [
   WpApiProvider.setBaseUrl(url+'wp-json');
   oauth1ClientProvider.config({
     consumerKey: 'yjfvX5h51p6k',
-    consumerSecret: 'sujwkaIm0eIhsVtC52dFyDnqXyU1hD124OyjoJ6YcuvMak7R',
+    consumerSecret: 'EOkoxMYISWjgxRXuO5MTVgLV3rXHKprea0iqzjoQJ3nX9c6L',
     requestEndpoint: url+'oauth1/request',
     authorizeEndpoint: url+'oauth1/authorize',
     accessEndpoint: url+'oauth1/access',
-    oauthCallback: 'http://delibera.redelivre.org.br/success'
+    oauthCallback: 'http://delibera.redelivre.org.br/oauth1/access'
   });
 
   console.log(JSON.stringify(oauth1ClientProvider, null, 4));
