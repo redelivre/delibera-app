@@ -265,22 +265,6 @@ angular.module('delibera-app.controllers', [])
         alert("Error!"+ JSON.stringify(response, null, 1));
     });
 
-
-    var settings = {
-      "async": true,
-      "crossDomain": true,
-      "url": "http://delibera.redelivre.org.br/wp-json/wp/v2/users/me",
-      "method": "GET",
-      "headers": {
-        "authorization": "OAuth oauth_consumer_key=\\\"yjfvX5h51p6k\\\",oauth_token=\\\"FeDhvevsW8HrtnoY9PWhRKrc\\\",oauth_signature_method=\\\"HMAC-SHA1\\\",oauth_timestamp=\\\"1500999350\\\",oauth_nonce=\\\"MlGKhGBUScu\\\",oauth_version=\\\"1.0\\\",oauth_signature=\\\"FW0xlPmKoUNu3zSa7K4LrauvbJE%3D\\\"",
-        "cache-control": "no-cache",
-        "postman-token": "31c8bad0-efb5-080b-4eb6-b0a5ec65937d"
-      }
-    }
-
-    $.ajax(settings).done(function (response) {
-      console.log("Teste meio maluco"+JSON.stringify(response, null, 1));
-    });
     // authorizedHttp({
     //     method: "POST",
     //     url: "http://delibera.redelivre.org.br/wp-json/wp/v2/users",
