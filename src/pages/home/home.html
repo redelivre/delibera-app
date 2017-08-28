@@ -1,13 +1,53 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Pautas</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <button ion-button (click)="requestLogin()">Login</button>
-  <button ion-button (click)="requestCreds()">ShowCreds</button>
-  <button ion-button (click)="requestMe()">ME</button>
-  <button ion-button (click)="requestRm()">Remove Cred</button>
+  <img class="logo" src="http://delibera.redelivre.org.br/files/2016/05/logo-site-menu.png">
+  <br>
+  <strong>Bem-vindo a plataforma de debate do Delibera</strong>
+	<ion-list>
+		<ion-card *ngFor="let pauta of pautas">
+		  <!--img src="img/nin-live.png"/-->
+		  <ion-card-content>
+		    <ion-card-title>
+		      {{pauta.title.rendered}}
+		      </ion-card-title>
+		    <p align="justify">
+		      {{htmlToString(pauta.content.rendered)}}
+		    </p>
+		  </ion-card-content>
+		  <ion-row>
+		    <ion-col *ngIf="isLoggedIn()">
+		      <button ion-button icon-left clear small>
+		        <a (click)="like()" ><ion-icon name="thumbs-up"></ion-icon>Curtir</a>
+		      </button>
+		    </ion-col>
+		    <ion-col *ngIf="isLoggedIn()" (click)="goToComments(pauta.id, pauta.title.rendered)">
+		      <button ion-button icon-left clear small>
+		        <ion-icon name="text"></ion-icon>
+		        <div>Comentários</div>
+		      </button>
+		    </ion-col>
+		    <ion-col>
+		      <button ion-button icon-left clear small>
+		        <ion-icon name="ios-alert"></ion-icon>
+		        <div>{{status(pauta.situacao)}}</div>
+		      </button>
+		    </ion-col>
+		    <ion-col>
+		      <button ion-button icon-left clear small>
+		        <ion-icon name="ios-clock"></ion-icon>
+		        <div> {{formatDateOld(pauta.date)}}</div>
+		      </button>
+		    </ion-col>
+		  </ion-row>
+		</ion-card>
+	</ion-list>
+
 </ion-content>

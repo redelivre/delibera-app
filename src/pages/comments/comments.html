@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<ion-list>
+		<ion-card *ngFor="let comment of comments">
+		  <ion-item>
+		    <ion-avatar item-start>
+		      <img src="{{comment.author_avatar_urls[96]}}">
+		    </ion-avatar>
+		    <h2>{{comment.author_name}}</h2>
+		    <p>{{comment.date}}</p>
+		  </ion-item>
+		  <ion-card-content>
+		    <p align="justify">
+		      {{comment.content.rendered}}
+		    </p>
+		  </ion-card-content>
+		  <ion-row>
+		    <ion-col>
+		      <button ion-button icon-left clear small>
+		        <a (click)="addcomment()" ><ion-icon name="thumbs-up"></ion-icon>Comentar</a>
+		      </button>
+		    </ion-col>
+		  </ion-row>
+		</ion-card>
+	</ion-list>
+
+</ion-content>

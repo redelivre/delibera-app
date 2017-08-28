@@ -1,73 +1,80 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import api from 'wordpress-rest-api-oauth-1';
-
-var url = "http://teste3.redelivre.ethymos.com.br/";
-const demoApi = new api({
-        url: url,
-        callbackURL: 'http://teste3.redelivre.ethymos.com.br/delibera-api-login-callback',
-        credentials: {
-            client: {
-                public: 'Aqlujy7OtUsA',
-                secret: 'K9o0wJhLNucDKSw0bXCAlbxEucY0oihKURNk7syRoe0otAzc'
-            }
-        }
-});
-
+import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
+import { CommentsPage } from '../../pages/comments/comments';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
-    
-  }
-  requestLogin() {
-    
-  
-    
-    
-    
-    /*demoApi.getRequestToken().then( function() {
-      console.log( 'All API requests are now authenticated.' )
-    });*/
-    
-    //this.demoApi.removeCredentials();
-    
-    /*demoApi.getRequestToken().then( token => {
-      console.log( JSON.stringify( demoApi.config.credentials ) );
-      console.log( JSON.stringify(token) );
-      /*demoApi.config.credentials.token.public = token.token.oauth_token;
-      console.log( JSON.stringify( demoApi.config.credentials ) );
-      demoApi.saveCredentials();
-    });*/
-    
-    /*demoApi.restoreCredentials();
-    console.log("C1:" + JSON.stringify( demoApi.config.credentials ) );
-    console.log( JSON.stringify( demoApi.get( '/wp/v2/users/me' ) ) );*/
-    
-    //demoApi.restoreCredentials();
-    demoApi.authorize().then( function() {
-      demoApi.saveCredentials();
-      console.log('H1');
-    });
-    
-  }
-  requestCreds() {
-    demoApi.restoreCredentials();
-    console.log( JSON.stringify( demoApi.config.credentials ) );
-  }
-  requestMe() {
-    demoApi.restoreCredentials();
-    demoApi.get( '/wp/v2/users/me' ).then( user => {
-        console.log( JSON.stringify( user ) );
-        alert( JSON.stringify( user ) );
+  pautas;
+  duration_in_seconds;
+
+  constructor(public navCtrl: NavController, 
+    private serviceProvider: RemoteServiceProvider ) {
+    this.serviceProvider.getPautas().then( pautas => {
+        this.pautas = pautas;
     });
   }
-  requestRm() {
-    demoApi.removeCredentials();
-    alert('ok, Credentials removed!');
-    
+
+  htmlToString(string) {
+    return string.replace(/<\/?[^>]+(>|$)/g, "");
   }
+
+  status(name) {
+    if (name === "comresolucao"){
+      return "Resolução";
+    }
+    else if (name === "relatoria") {
+      return "Relatoria";
+    }
+    else if (name === "discussao"){
+      return "Discussão";
+    }
+  }
+
+  formatDateOld(date) {
+    var monthNames = [
+      "Janeiro", "Fevereiro", "Março",
+      "Abril", "Maio", "Junho", "Julio",
+      "Agosto", "Setembro", "Outubro",
+      "Novembro", "Dezembro"
+    ];
+
+    date = new Date(date);
+
+    var day = date.getDate();
+    var monthIndex = date.getMonth();
+    var year = date.getFullYear();
+
+    return day + ' ' + monthNames[monthIndex] + ' ' + year;
+  }
+
+  formatDate(date) {
+    var monthNames = [
+      "01", "02", "03",
+      "04", "05", "06", "07",
+      "08", "09", "10",
+      "11", "12"
+    ];
+
+    date = new Date(date);
+
+    var day = date.getDate();
+    var monthIndex = date.getMonth();
+    var year = date.getFullYear();
+
+    return day + '/' + monthNames[monthIndex] + ' ' + year;
+  }
+
+  isLoggedIn() {
+    return this.serviceProvider.isLoggedIn();
+  }
+
+  goToComments(id, title){
+    console.log("Cheguei");
+    this.navCtrl.push(CommentsPage, {id: id, title: title});
+  }
+
 }
