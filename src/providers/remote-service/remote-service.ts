@@ -37,7 +37,14 @@ export class RemoteServiceProvider {
 
   like(id){
     demoApi.restoreCredentials();
-    return demoApi.get(demoApi.get( '/wp/v2/pauta/'+id+'/like' ));
+    console.log('/wp/v2/pautas/'+id+'/like');
+    return demoApi.post( '/wp/v2/pautas/'+id+'/like' );
+  }
+
+  unlike(id){
+    demoApi.restoreCredentials();
+    console.log('/wp/v2/pautas/'+id+'/like');
+    return demoApi.post( '/wp/v2/pautas/'+id+'/unlike' );
   }
 
   sendPauta(pauta){

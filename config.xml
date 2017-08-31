@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="br.org.redelivre.delibera" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>MyApp</name>
     <description>An awesome Ionic/Cordova app.</description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content original-src="index.html" src="http://192.168.43.221:8101" />
+    <author email="cabelotaina@gmail.com" href="http://cabelotaina.github.io">Maurilio Atila</author>
+    <content original-src="index.html" src="http://192.168.1.4:8100" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
     <allow-intent href="http://*/*" />
@@ -83,6 +83,9 @@
     <allow-navigation href="http://192.168.43.221:8102" />
     <allow-navigation href="http://192.168.43.221:8103" />
     <allow-navigation href="http://192.168.43.221:8101" />
+    <allow-navigation href="http://192.168.0.3:8101" />
+    <allow-navigation href="http://200.135.85.186:8100" />
+    <allow-navigation href="http://192.168.1.4:8100" />
     <engine name="android" spec="^6.2.3" />
     <plugin name="cordova-plugin-console" spec="^1.0.5" />
     <plugin name="cordova-plugin-device" spec="^1.1.4" />

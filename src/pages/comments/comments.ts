@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
 
 
@@ -11,18 +11,29 @@ export class CommentsPage {
 
 	comments;
 	title;
+  empty;
 
   constructor(public navParams: NavParams,
   	public navCtrl: NavController,
-  	private serviceProvider: RemoteServiceProvider ) {
+  	private serviceProvider: RemoteServiceProvider,
+    public loadingCtrl: LoadingController) {
+      this.presentLoading();
   	  let id = this.navParams.get('id');
   	  this.title = this.navParams.get('title');
-  	  console.log("Meu id:" + this.navParams.get('id') );
 	  	this.serviceProvider.getPautaComments(id)
 		  	.then( comments => {
-		  			console.log(JSON.stringify(comments, null, 1))
-		        this.comments = comments;
+          if (comments.length === 0){this.empty = true}
+		  	  console.log(JSON.stringify(comments, null, 1))
+		      this.comments = comments;
 		    });
+  }
+
+  presentLoading() {
+    let loader = this.loadingCtrl.create({
+      content: "Please wait...",
+      duration: 3000
+    });
+    loader.present();
   }
 
 }

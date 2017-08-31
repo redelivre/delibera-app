@@ -8,12 +8,15 @@
 </ion-header>
 
 <ion-content padding>
-  <img class="logo" src="http://delibera.redelivre.org.br/files/2016/05/logo-site-menu.png">
-  <br>
-  <strong>Bem-vindo a plataforma de debate do Delibera</strong>
+  <ion-card text-center>
+    <div class="or-label">
+      <img class="logo" src="http://delibera.redelivre.org.br/files/2016/05/logo-site-menu.png">
+      <strong></strong>
+    </div>
+    <button outline>Bem-vindo a plataforma de debate do Delibera</button>
+  </ion-card>
 	<ion-list>
 		<ion-card *ngFor="let pauta of pautas">
-		  <!--img src="img/nin-live.png"/-->
 		  <ion-card-content>
 		    <ion-card-title>
 		      {{pauta.title.rendered}}
@@ -23,28 +26,33 @@
 		    </p>
 		  </ion-card-content>
 		  <ion-row>
-		    <ion-col *ngIf="isLoggedIn()">
+		    <ion-col col-3 *ngIf="isLoggedIn()">
 		      <button ion-button icon-left clear small>
-		        <a (click)="like()" ><ion-icon name="thumbs-up"></ion-icon>Curtir</a>
+		        <a (click)="like(pauta.id)" ><ion-icon name="thumbs-up"></ion-icon>Curtir</a>
 		      </button>
 		    </ion-col>
-		    <ion-col *ngIf="isLoggedIn()" (click)="goToComments(pauta.id, pauta.title.rendered)">
+		    <ion-col col-4 *ngIf="isLoggedIn()">
+		      <button ion-button icon-left clear small>
+		        <a (click)="unlike(pauta.id)" ><ion-icon name="thumbs-down"></ion-icon>Descurtir</a>
+		      </button>
+		    </ion-col>
+		    <ion-col col-4 *ngIf="isLoggedIn()" (click)="goToComments(pauta.id, pauta.title.rendered)">
 		      <button ion-button icon-left clear small>
 		        <ion-icon name="text"></ion-icon>
 		        <div>Comentários</div>
 		      </button>
 		    </ion-col>
-		    <ion-col>
-		      <button ion-button icon-left clear small>
+		    <ion-col col-6>
+		      <div ion-button icon-left clear small>
 		        <ion-icon name="ios-alert"></ion-icon>
 		        <div>{{status(pauta.situacao)}}</div>
-		      </button>
+		      </div>
 		    </ion-col>
-		    <ion-col>
-		      <button ion-button icon-left clear small>
-		        <ion-icon name="ios-clock"></ion-icon>
-		        <div> {{formatDateOld(pauta.date)}}</div>
-		      </button>
+		    <ion-col col-6>
+		      <div ion-button icon-left clear small>
+	        <ion-icon name="ios-clock"></ion-icon>
+	        <div> {{formatDateOld(pauta.date)}}</div>
+	        </div>
 		    </ion-col>
 		  </ion-row>
 		</ion-card>

@@ -6,8 +6,15 @@
     <ion-title>{{title}}</ion-title>
   </ion-navbar>
 </ion-header>
-
 <ion-content padding>
+	<ion-card *ngIf="empty">
+	  <ion-card-header>
+	     <ion-icon name="alert" style="color:green"></ion-icon> Bahh...
+	  </ion-card-header>
+	  <ion-card-content>
+	    Essa pauta não possui nem um comentário, seja você o primeiro.
+	  </ion-card-content>
+	</ion-card>
 	<ion-list>
 		<ion-card *ngFor="let comment of comments">
 		  <ion-item>

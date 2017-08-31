@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
 import { CommentsPage } from '../../pages/comments/comments';
 @Component({
@@ -12,9 +12,11 @@ export class HomePage {
   duration_in_seconds;
 
   constructor(public navCtrl: NavController, 
-    private serviceProvider: RemoteServiceProvider ) {
+    private serviceProvider: RemoteServiceProvider,
+    public loadingCtrl: LoadingController) {
+    this.presentLoading();
     this.serviceProvider.getPautas().then( pautas => {
-        this.pautas = pautas;
+      this.pautas = pautas;
     });
   }
 
@@ -73,8 +75,27 @@ export class HomePage {
   }
 
   goToComments(id, title){
-    console.log("Cheguei");
     this.navCtrl.push(CommentsPage, {id: id, title: title});
+  }
+
+  like(id){
+    this.serviceProvider.like(id).then( like => {
+      console.log(JSON.stringify(like, null, 1));
+    }, like => {console.log(JSON.stringify(like, null, 1));});
+  }
+
+  unlike(id){
+    this.serviceProvider.unlike(id).then( unlike => {
+      console.log(JSON.stringify(unlike, null, 1));
+    }, unlike => {console.log(JSON.stringify(unlike, null, 1));});
+  }
+
+  presentLoading() {
+    let loader = this.loadingCtrl.create({
+      content: "Please wait...",
+      duration: 3000
+    });
+    loader.present();
   }
 
 }
