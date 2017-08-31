@@ -55,7 +55,6 @@ export class RemoteServiceProvider {
     return demoApi.post( '/wp/v2/comments', comment);
   }
 
-
   sendPauta(pauta){
     demoApi.restoreCredentials();
     return demoApi.post( '/wp/v2/pauta', pauta );

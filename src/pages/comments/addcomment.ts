@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
+import { HomePage } from '../../pages/home/home';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class NewCommentPage {
     this.serviceProvider.newComment(this.comment).then( like => {
       console.log(JSON.stringify(like, null, 1));
       this.presentToast('Comentário adicionado com sucesso.');
+      this.navCtrl.push(HomePage);
     }, like => {console.log(JSON.stringify(like, null, 1));});
   }
 
