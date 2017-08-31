@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController } from 'ionic-angular';
+import { NavController, LoadingController, ToastController } from 'ionic-angular';
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
 import { CommentsPage } from '../../pages/comments/comments';
+import { NewCommentPage } from '../../pages/comments/addcomment';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -13,15 +14,12 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, 
     private serviceProvider: RemoteServiceProvider,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController,
+    public toastCtrl: ToastController) {
     this.presentLoading();
     this.serviceProvider.getPautas().then( pautas => {
       this.pautas = pautas;
     });
-  }
-
-  htmlToString(string) {
-    return string.replace(/<\/?[^>]+(>|$)/g, "");
   }
 
   status(name) {
@@ -81,13 +79,19 @@ export class HomePage {
   like(id){
     this.serviceProvider.like(id).then( like => {
       console.log(JSON.stringify(like, null, 1));
+      this.presentToast('Pauta curtida');
     }, like => {console.log(JSON.stringify(like, null, 1));});
   }
 
   unlike(id){
     this.serviceProvider.unlike(id).then( unlike => {
       console.log(JSON.stringify(unlike, null, 1));
+      this.presentToast('Pauta descurtida');
     }, unlike => {console.log(JSON.stringify(unlike, null, 1));});
+  }
+
+  goToAddComment(id, title){
+    this.navCtrl.push(NewCommentPage, {id: id, title: title});
   }
 
   presentLoading() {
@@ -96,6 +100,14 @@ export class HomePage {
       duration: 3000
     });
     loader.present();
+  }
+
+  presentToast(msg) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000
+    });
+    toast.present();
   }
 
 }

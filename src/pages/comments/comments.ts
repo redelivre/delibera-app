@@ -12,6 +12,7 @@ export class CommentsPage {
 	comments;
 	title;
   empty;
+  comment = {content: ""};
 
   constructor(public navParams: NavParams,
   	public navCtrl: NavController,
@@ -34,6 +35,10 @@ export class CommentsPage {
       duration: 3000
     });
     loader.present();
+  }
+
+  addComment() {
+    console.log(this.comment);
   }
 
 }

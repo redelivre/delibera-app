@@ -12,6 +12,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { AddPautaPage } from '../pages/pautas/addpauta';
 
 import { CommentsPage } from '../pages/comments/comments';
+import { NewCommentPage } from '../pages/comments/addcomment';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -25,7 +26,8 @@ import { RemoteServiceProvider } from '../providers/remote-service/remote-servic
     HomePage,
     TabsPage,
     AddPautaPage,
-    CommentsPage
+    CommentsPage,
+    NewCommentPage
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,8 @@ import { RemoteServiceProvider } from '../providers/remote-service/remote-servic
     HomePage,
     TabsPage,
     AddPautaPage,
-    CommentsPage
+    CommentsPage,
+    NewCommentPage
   ],
   providers: [
     StatusBar,

@@ -9,14 +9,10 @@
 <ion-content>
  <ion-list>
 
-  <form (ngSubmit)="sendPauta(TabsPage)">
+  <form (ngSubmit)="newComment()">
     <ion-item>
-      <ion-label>Titulo</ion-label>
-      <ion-input type="text" [(ngModel)]="pauta.title" name="title"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Conteudo</ion-label>
-      <ion-textarea [(ngModel)]="pauta.content" name="content"></ion-textarea>
+      <ion-label stacked>Conteudo</ion-label>
+      <ion-textarea [(ngModel)]="comment.content" name="content"></ion-textarea>
     </ion-item>
     <button ion-button type="submit" block>Enviar</button>
   </form>

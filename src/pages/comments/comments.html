@@ -25,16 +25,17 @@
 		    <p>{{comment.date}}</p>
 		  </ion-item>
 		  <ion-card-content>
-		    <p align="justify">
-		      {{comment.content.rendered}}
+		    <p align="justify" [innerHTML]="comment.content.rendered">
 		    </p>
 		  </ion-card-content>
 		  <ion-row>
-		    <ion-col>
+		    <!--ion-col>
 		      <button ion-button icon-left clear small>
-		        <a (click)="addcomment()" ><ion-icon name="thumbs-up"></ion-icon>Comentar</a>
+		        <a (click)="goToAddComment(comment)" >
+		        <ion-icon name="text"></ion-icon>
+		        Comentar</a>
 		      </button>
-		    </ion-col>
+		    </ion-col-->
 		  </ion-row>
 		</ion-card>
 	</ion-list>

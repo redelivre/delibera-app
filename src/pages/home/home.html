@@ -21,38 +21,41 @@
 		    <ion-card-title>
 		      {{pauta.title.rendered}}
 		      </ion-card-title>
-		    <p align="justify">
-		      {{htmlToString(pauta.content.rendered)}}
+		    <p align="justify" [innerHTML]="pauta.content.rendered">
 		    </p>
 		  </ion-card-content>
 		  <ion-row>
-		    <ion-col col-3 *ngIf="isLoggedIn()">
+		    <ion-col col-7 *ngIf="isLoggedIn()">
 		      <button ion-button icon-left clear small>
 		        <a (click)="like(pauta.id)" ><ion-icon name="thumbs-up"></ion-icon>Curtir</a>
 		      </button>
 		    </ion-col>
-		    <ion-col col-4 *ngIf="isLoggedIn()">
+		    <ion-col col-5 *ngIf="isLoggedIn()">
 		      <button ion-button icon-left clear small>
 		        <a (click)="unlike(pauta.id)" ><ion-icon name="thumbs-down"></ion-icon>Descurtir</a>
 		      </button>
 		    </ion-col>
+
+		    <ion-col col-7 *ngIf="isLoggedIn()" style="padding:20px">
+		       Pauta em <strong>{{status(pauta.situacao)}}</strong>
+		    </ion-col>
+
 		    <ion-col col-4 *ngIf="isLoggedIn()" (click)="goToComments(pauta.id, pauta.title.rendered)">
 		      <button ion-button icon-left clear small>
 		        <ion-icon name="text"></ion-icon>
 		        <div>Comentários</div>
 		      </button>
 		    </ion-col>
-		    <ion-col col-6>
-		      <div ion-button icon-left clear small>
-		        <ion-icon name="ios-alert"></ion-icon>
-		        <div>{{status(pauta.situacao)}}</div>
-		      </div>
-		    </ion-col>
-		    <ion-col col-6>
-		      <div ion-button icon-left clear small>
-	        <ion-icon name="ios-clock"></ion-icon>
-	        <div> {{formatDateOld(pauta.date)}}</div>
-	        </div>
+		    <ion-col col-12>
+					<ion-list>
+					  <ion-item>
+					    {{formatDateOld(pauta.date)}}
+					    <button (click)="goToAddComment(pauta.id, pauta.title.rendered)" ion-button outline item-end icon-left>
+					      <ion-icon name="text"></ion-icon>
+					      Comentar
+					    </button>
+					  </ion-item>
+					</ion-list>
 		    </ion-col>
 		  </ion-row>
 		</ion-card>

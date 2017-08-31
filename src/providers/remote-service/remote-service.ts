@@ -37,15 +37,24 @@ export class RemoteServiceProvider {
 
   like(id){
     demoApi.restoreCredentials();
-    console.log('/wp/v2/pautas/'+id+'/like');
     return demoApi.post( '/wp/v2/pautas/'+id+'/like' );
   }
 
   unlike(id){
     demoApi.restoreCredentials();
-    console.log('/wp/v2/pautas/'+id+'/like');
     return demoApi.post( '/wp/v2/pautas/'+id+'/unlike' );
   }
+
+  addComments(comment){
+    demoApi.restoreCredentials();
+    return demoApi.post( '/wp/v2/comments', comment );
+  }
+
+  newComment(comment){
+    demoApi.restoreCredentials();
+    return demoApi.post( '/wp/v2/comments', comment);
+  }
+
 
   sendPauta(pauta){
     demoApi.restoreCredentials();
