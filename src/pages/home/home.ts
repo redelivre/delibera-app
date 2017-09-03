@@ -11,12 +11,18 @@ export class HomePage {
 
   pautas;
   duration_in_seconds;
+  like_badge; unlike_badge;
 
   constructor(public navCtrl: NavController, 
     private serviceProvider: RemoteServiceProvider,
     public loadingCtrl: LoadingController,
     public toastCtrl: ToastController) {
     this.presentLoading();
+    this.serviceProvider.credentials("1");
+    if (this.serviceProvider.isLoggedOff()){
+      this.serviceProvider.requestLogin();
+    }
+    this.serviceProvider.credentials("2");
     this.serviceProvider.getPautas().then( pautas => {
       this.pautas = pautas;
     });
@@ -108,6 +114,18 @@ export class HomePage {
       duration: 3000
     });
     toast.present();
+  }
+
+  like_number(id){
+    this.serviceProvider.getNumberLikes(id).then( like => {
+      this.like_badge = like;
+    }, like => {console.log(JSON.stringify(like, null, 1));});
+  }
+
+  unlike_number(id){
+    this.serviceProvider.getNumberUnlikes(id).then( unlike => {
+      this.unlike_badge = unlike;
+    }, unlike => {console.log(JSON.stringify(unlike, null, 1));});
   }
 
 }

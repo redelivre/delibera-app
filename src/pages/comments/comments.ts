@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { RemoteServiceProvider } from './../../providers/remote-service/remote-service';
+import { NewCommentPage } from '../../pages/comments/addcomment';
 
 
 @Component({
@@ -29,16 +30,17 @@ export class CommentsPage {
 		    });
   }
 
+  goToAddComment(comment, title){
+    console.log(JSON.stringify(comment));
+    this.navCtrl.push(NewCommentPage, {id: comment.post, title: title, parent: comment.id});
+  }
+
   presentLoading() {
     let loader = this.loadingCtrl.create({
       content: "Please wait...",
       duration: 3000
     });
     loader.present();
-  }
-
-  addComment() {
-    console.log(this.comment);
   }
 
 }

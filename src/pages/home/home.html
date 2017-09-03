@@ -26,13 +26,27 @@
 		  </ion-card-content>
 		  <ion-row>
 		    <ion-col col-7 *ngIf="isLoggedIn()">
-		      <button ion-button icon-left clear small>
-		        <a (click)="like(pauta.id)" ><ion-icon name="thumbs-up"></ion-icon>Curtir</a>
+		      <button ion-button icon-left clear large id="notification-button">
+		        <a (click)="like(pauta.id)" >
+			        <ion-icon name="thumbs-up" *ngIf="pauta.liked == true" style="color:red">
+			        	<ion-badge id="notifications-badge" color="danger">{{pauta.likes}}</ion-badge>
+			        </ion-icon>
+			        <ion-icon name="thumbs-up" *ngIf="pauta.liked == false">
+			        	<ion-badge id="notifications-badge" color="danger">{{pauta.likes}}</ion-badge>
+			        </ion-icon>
+		        </a>
 		      </button>
 		    </ion-col>
 		    <ion-col col-5 *ngIf="isLoggedIn()">
-		      <button ion-button icon-left clear small>
-		        <a (click)="unlike(pauta.id)" ><ion-icon name="thumbs-down"></ion-icon>Descurtir</a>
+		      <button ion-button icon-left clear large id="notification-button">
+		        <a (click)="unlike(pauta.id)">
+			        <ion-icon name="thumbs-down" *ngIf="pauta.unliked == true">
+			        	<ion-badge id="notifications-badge" color="danger">{{pauta.unlikes}}</ion-badge>
+			        </ion-icon>
+			        <ion-icon name="thumbs-down" *ngIf="pauta.unliked == false">
+			        	<ion-badge id="notifications-badge" color="danger">{{pauta.unlikes}}</ion-badge>
+			        </ion-icon>
+		        </a>
 		      </button>
 		    </ion-col>
 

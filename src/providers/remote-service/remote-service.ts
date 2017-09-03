@@ -65,6 +65,16 @@ export class RemoteServiceProvider {
     return demoApi.get( '/wp/v2/comments?post='+id );
   }
 
+  getNumberLikes(id){
+    demoApi.restoreCredentials();
+    return demoApi.get( '/wp/v2/pautas/'+id+'/getLikes' );
+  }
+
+  getNumberUnlikes(id){
+    demoApi.restoreCredentials();
+    return demoApi.get( '/wp/v2/pautas/'+id+'/getUnlikes' );
+  }
+
   // Basic Service
 
   isLoggedIn(){
@@ -91,10 +101,15 @@ export class RemoteServiceProvider {
   requestLogin() {
     demoApi.authorize().then( function() {
       demoApi.saveCredentials();
-      console.log('H1');
+      console.log( 'All API requests are now authenticated.' );
     });
     
   }
+
+  credentials(id) {
+      console.log("Debug"+id+": "+JSON.stringify(demoApi.config.credentials, null, 1))
+  }
+
   requestCreds() {
     demoApi.restoreCredentials();
     //console.log( JSON.stringify( demoApi.config.credentials ) );

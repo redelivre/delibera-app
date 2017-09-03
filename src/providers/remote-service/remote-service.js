@@ -38,23 +38,62 @@ var RemoteServiceProvider = (function () {
     };
     RemoteServiceProvider.prototype.like = function (id) {
         demoApi.restoreCredentials();
-        return demoApi.get(demoApi.get('/wp/v2/pauta/' + id + '/like'));
+        return demoApi.post('/wp/v2/pautas/' + id + '/like');
+    };
+    RemoteServiceProvider.prototype.unlike = function (id) {
+        demoApi.restoreCredentials();
+        return demoApi.post('/wp/v2/pautas/' + id + '/unlike');
+    };
+    RemoteServiceProvider.prototype.addComments = function (comment) {
+        demoApi.restoreCredentials();
+        return demoApi.post('/wp/v2/comments', comment);
+    };
+    RemoteServiceProvider.prototype.newComment = function (comment) {
+        demoApi.restoreCredentials();
+        return demoApi.post('/wp/v2/comments', comment);
     };
     RemoteServiceProvider.prototype.sendPauta = function (pauta) {
-        console.log(pauta);
         demoApi.restoreCredentials();
         return demoApi.post('/wp/v2/pauta', pauta);
     };
+    RemoteServiceProvider.prototype.getPautaComments = function (id) {
+        demoApi.restoreCredentials();
+        return demoApi.get('/wp/v2/comments?post=' + id);
+    };
+    RemoteServiceProvider.prototype.getNumberLikes = function (id) {
+        demoApi.restoreCredentials();
+        return demoApi.get('/wp/v2/pautas/' + id + '/getLikes');
+    };
+    RemoteServiceProvider.prototype.getNumberUnlikes = function (id) {
+        demoApi.restoreCredentials();
+        return demoApi.get('/wp/v2/pautas/' + id + '/getUnlikes');
+    };
     // Basic Service
     RemoteServiceProvider.prototype.isLoggedIn = function () {
-        return true;
+        if (Object.keys(demoApi.config.credentials).length === 1) {
+            return false;
+        }
+        else if (Object.keys(demoApi.config.credentials).length > 1) {
+            return true;
+        }
+    };
+    RemoteServiceProvider.prototype.isLoggedOff = function () {
+        if (Object.keys(demoApi.config.credentials).length === 1) {
+            return true;
+        }
+        else if (Object.keys(demoApi.config.credentials).length > 1) {
+            return false;
+        }
     };
     // Base methods
     RemoteServiceProvider.prototype.requestLogin = function () {
         demoApi.authorize().then(function () {
             demoApi.saveCredentials();
-            console.log('H1');
+            //console.log('H1');
         });
+    };
+    RemoteServiceProvider.prototype.credentials = function () {
+        console.log("Debug: " + JSON.stringify(demoApi.config.credentials, null, 1));
     };
     RemoteServiceProvider.prototype.requestCreds = function () {
         demoApi.restoreCredentials();

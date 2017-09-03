@@ -10,7 +10,7 @@ import { HomePage } from '../../pages/home/home';
 })
 export class NewCommentPage {
 
-  comment = {content: "", post: ""};
+  comment = {content: "", post: "", parent: ""};
   constructor(public navParams: NavParams,
     public navCtrl: NavController,
     private serviceProvider: RemoteServiceProvider,
@@ -19,6 +19,14 @@ export class NewCommentPage {
 
   newComment() {
     this.comment.post = this.navParams.data.id
+    if (this.navParams.data.hasOwnProperty("parent")){
+      if (this.navParams.data.parent !== ""){
+          this.comment.parent = this.navParams.data.parent;
+      }
+    }
+    else {
+      delete this.comment.parent;
+    }
     console.log(JSON.stringify(this.comment));
     this.serviceProvider.newComment(this.comment).then( like => {
       console.log(JSON.stringify(like, null, 1));

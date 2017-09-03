@@ -18,8 +18,7 @@ var MyApp = (function () {
     function MyApp(platform, statusBar, splashScreen, serviceProvider) {
         var _this = this;
         this.serviceProvider = serviceProvider;
-        //rootPage:any = TabsPage;
-        this.rootPage = AddPautaPage;
+        this.rootPage = TabsPage;
         platform.ready().then(function () {
             _this.AddPautaPage = AddPautaPage;
             _this.TabsPage = TabsPage;
@@ -44,6 +43,12 @@ var MyApp = (function () {
     };
     MyApp.prototype.requestMe = function () {
         this.serviceProvider.requestMe();
+    };
+    MyApp.prototype.isLoggedIn = function () {
+        return this.serviceProvider.isLoggedIn();
+    };
+    MyApp.prototype.isLoggedOff = function () {
+        return this.serviceProvider.isLoggedOff();
     };
     return MyApp;
 }());
