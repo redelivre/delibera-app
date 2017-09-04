@@ -1,14 +1,13 @@
 <ion-menu [content]="content">
   <ion-header>
     <ion-toolbar>
-      <img class="logo" src="../../assets/img/logo-site-menu.png">
+      <img class="logo" src="/assets/img/logo-site-menu.png">
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
     <ion-list>
       <button menuClose ion-item large *ngIf="isLoggedIn()" (click)="openPage(TabsPage)"><ion-icon name="home"></ion-icon> Home</button>
-      <button menuClose ion-item large *ngIf="isLoggedIn()" (click)="requestMe()"><ion-icon ios="ios-contact" md="md-contact"></ion-icon> Usuario</button>
       <button menuClose ion-item large *ngIf="isLoggedIn()" (click)="openPage(AddPautaPage)"><ion-icon name="document"></ion-icon> Adicionar Pauta</button>
       <button menuClose ion-item large *ngIf="isLoggedIn()" (click)="requestRm()"><ion-icon name="log-out"></ion-icon> Logout</button>
       <button menuClose ion-item large *ngIf="isLoggedOff()" (click)="requestLogin()"><ion-icon name="log-in"></ion-icon> Login</button>
@@ -18,9 +17,4 @@
 </ion-menu>
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false">
-
-
-        <img src="../../assets/img/logo-site-menu.png">
-
-</ion-nav>
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

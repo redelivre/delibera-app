@@ -45,6 +45,16 @@ export class RemoteServiceProvider {
     return demoApi.post( '/wp/v2/pautas/'+id+'/unlike' );
   }
 
+  likeComment(id){
+    demoApi.restoreCredentials();
+    return demoApi.post( '/wp/v2/comments/'+id+'/like' );
+  }
+
+  unlikeComment(id){
+    demoApi.restoreCredentials();
+    return demoApi.post( '/wp/v2/comments/'+id+'/unlike' );
+  }
+
   addComments(comment){
     demoApi.restoreCredentials();
     return demoApi.post( '/wp/v2/comments', comment );

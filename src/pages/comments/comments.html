@@ -9,7 +9,7 @@
 <ion-content padding>
 	<ion-card *ngIf="empty">
 	  <ion-card-header>
-	     <ion-icon name="alert" style="color:green"></ion-icon> Bahh...
+	     <ion-icon name="alert" large style="color:green"></ion-icon> Bahh...
 	  </ion-card-header>
 	  <ion-card-content>
 	    Essa pauta não possui nem um comentário, seja você o primeiro.
@@ -21,20 +21,50 @@
 		    <ion-avatar item-start>
 		      <img src="{{comment.author_avatar_urls[96]}}">
 		    </ion-avatar>
-		    <h2>{{comment.author_name}}</h2>
-		    <p>{{comment.date}}</p>
+		    
+		    <div id="{{comment.id}}">#{{comment.id}}
+		      <h2>{{comment.author_name}}</h2>
+		    </div>
+		    <ion-note>{{formatDateOld(comment.date)}}</ion-note>
 		  </ion-item>
 		  <ion-card-content>
 		    <p align="justify" [innerHTML]="comment.content.rendered">
 		    </p>
+		    <a *ngIf="comment.parent" (click)="scrollTo(comment.parent)" >Resposta a {{comment.parent}}</a>
 		  </ion-card-content>
 		  <ion-row>
-		    <ion-col>
-		      <button ion-button icon-left clear small>
-		        <a (click)="goToAddComment(comment, title)" >
-		        <ion-icon name="text"></ion-icon>
-		        Comentar</a>
+				<ion-col col-2 *ngIf="isLoggedIn()">
+		      <button ion-button icon-left clear large id="notification-button">
+		        <a (click)="like(comment)" >
+			        <ion-icon name="thumbs-up" *ngIf="comment.liked" color="danger">
+			        	<ion-badge id="notifications-badge" color="danger">{{comment.likes}}</ion-badge>
+			        </ion-icon>
+			        <ion-icon name="thumbs-up" *ngIf="!comment.liked">
+			        	<ion-badge id="notifications-badge" color="danger">{{comment.likes}}</ion-badge>
+			        </ion-icon>
+		        </a>
 		      </button>
+		    </ion-col>
+		    <ion-col col-2 *ngIf="isLoggedIn()">
+		      <button ion-button icon-left clear large id="notification-button">
+		        <a (click)="unlike(comment)">
+			        <ion-icon name="thumbs-down" *ngIf="comment.unliked" color="danger">
+			        	<ion-badge id="notifications-badge" color="danger">{{comment.unlikes}}</ion-badge>
+			        </ion-icon>
+			        <ion-icon name="thumbs-down" *ngIf="!comment.unliked">
+			        	<ion-badge id="notifications-badge" color="danger">{{comment.unlikes}}</ion-badge>
+			        </ion-icon>
+		        </a>
+		      </button>
+		    </ion-col>
+		    <ion-col col-1>
+					<ion-list>
+					  <button ion-button icon-left clear large id="notification-button">
+					    <a (click)="goToAddComment(comment, title)">
+					      <ion-icon name="text"></ion-icon>
+					    </a>
+					  </button>
+					</ion-list>
 		    </ion-col>
 		  </ion-row>
 		</ion-card>

@@ -10,25 +10,29 @@
 <ion-content padding>
 	<ion-list>
 		<ion-card *ngFor="let pauta of pautas">
-		  <ion-card-content>
-		    <ion-card-title>
-		      {{pauta.title.rendered}}
-		      </ion-card-title>
-		    <p align="justify" [innerHTML]="pauta.content.rendered">
+      <ion-card-title style="padding-left: 10px;">
+        {{pauta.title.rendered}}
+      </ion-card-title>
+			<ion-item>
+		    <ion-avatar item-start>
+		      <img src="{{pauta.avatar}}">
+		    </ion-avatar>
+	      <p>
+		      <ion-note>{{pauta.user_name}}</ion-note>
 		    </p>
+		    <p>
+		      <ion-note>Possui uma pauta em {{status(pauta.situacao)}}</ion-note>
+		    </p>
+			</ion-item>
+		  <ion-card-content>
+		    <p align="justify" [innerHTML]="pauta.content.rendered"></p>
 		  </ion-card-content>
-		  <ion-row>
+	    <p align="right" style="padding-right: 20px;">
+	      <ion-note>{{formatDateOld(pauta.date)}}</ion-note>
+	    </p>
 
-		    <ion-col col-6 *ngIf="isLoggedIn()" style="padding:20px">
-		       Pauta em <strong>{{status(pauta.situacao)}}</strong>
-		    </ion-col>
-
-		    <ion-col col-6 *ngIf="isLoggedIn()" style="padding:20px">
-		       <strong>{{formatDateOld(pauta.date)}}</strong>
-		    </ion-col>
-
-
-				<ion-col col-2 *ngIf="isLoggedIn()">
+		  <ion-row text-center>
+				<ion-col col-offset-1 col-3 *ngIf="isLoggedIn()">
 		      <button ion-button icon-left clear large id="notification-button">
 		        <a (click)="like(pauta)" >
 			        <ion-icon name="thumbs-up" *ngIf="pauta.liked" color="danger">
@@ -40,7 +44,7 @@
 		        </a>
 		      </button>
 		    </ion-col>
-		    <ion-col col-2 *ngIf="isLoggedIn()">
+		    <ion-col col-3 *ngIf="isLoggedIn()">
 		      <button ion-button icon-left clear large id="notification-button">
 		        <a (click)="unlike(pauta)">
 			        <ion-icon name="thumbs-down" *ngIf="pauta.unliked" color="danger">
@@ -52,7 +56,7 @@
 		        </a>
 		      </button>
 		    </ion-col>
-		    <ion-col col-1>
+		    <ion-col col-2>
 					<ion-list>
 					  <button ion-button icon-left clear large id="notification-button">
 					    <a (click)="goToAddComment(pauta.id, pauta.title.rendered)">
@@ -61,12 +65,13 @@
 					  </button>
 					</ion-list>
 		    </ion-col>
-
-
-		    <ion-col col-4 *ngIf="isLoggedIn()" (click)="goToComments(pauta.id, pauta.title.rendered)">
-		      <button ion-button icon-left clear large>
-		        <ion-icon name="md-chatbubbles"></ion-icon>
-		        <div>Comentários</div>
+		    <ion-col col-2 *ngIf="isLoggedIn()" >
+		      <button ion-button icon-left clear large id="notification-button">
+		        <a (click)="goToComments(pauta.id, pauta.title.rendered)">
+		          <ion-icon name="md-chatbubbles">
+		          	<ion-badge id="notifications-badge" color="danger">{{pauta.interactions}}</ion-badge>
+		          </ion-icon>
+		        </a>
 		      </button>
 		    </ion-col>
 

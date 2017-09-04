@@ -17,12 +17,12 @@ export class HomePage {
     private serviceProvider: RemoteServiceProvider,
     public loadingCtrl: LoadingController,
     public toastCtrl: ToastController) {
-    this.presentLoading();
-    this.serviceProvider.credentials("1");
+    this.presentLoading("Aguarde..");
+    //this.serviceProvider.credentials("1");
     if (this.serviceProvider.isLoggedOff()){
-      //this.serviceProvider.requestLogin();
+      this.serviceProvider.requestLogin();
     }
-    this.serviceProvider.credentials("2");
+    //this.serviceProvider.credentials("2");
     this.serviceProvider.getPautas().then( pautas => {
       this.pautas = pautas;
     });
@@ -54,24 +54,7 @@ export class HomePage {
     var monthIndex = date.getMonth();
     var year = date.getFullYear();
 
-    return day + ' ' + monthNames[monthIndex] + ' ' + year;
-  }
-
-  formatDate(date) {
-    var monthNames = [
-      "01", "02", "03",
-      "04", "05", "06", "07",
-      "08", "09", "10",
-      "11", "12"
-    ];
-
-    date = new Date(date);
-
-    var day = date.getDate();
-    var monthIndex = date.getMonth();
-    var year = date.getFullYear();
-
-    return day + '/' + monthNames[monthIndex] + ' ' + year;
+    return day + ' de ' + monthNames[monthIndex] + ' de ' + year;
   }
 
   isLoggedIn() {
@@ -92,13 +75,11 @@ export class HomePage {
         pauta.liked = true;
         pauta.likes = parseInt(pauta.likes) + 1;
       }
-      this.presentToast('Pauta curtida');
     }, like => {console.log(JSON.stringify(like, null, 1));});
   }
 
   unlike(pauta){
     this.serviceProvider.unlike(pauta.id).then( unlike => {
-      console.log(JSON.stringify(unlike, null, 1));
       if (pauta.unliked === true){
         pauta.unliked = false;
         pauta.unlikes = parseInt(pauta.unlikes) - 1;
@@ -106,8 +87,6 @@ export class HomePage {
         pauta.unliked = true;
         pauta.unlikes = parseInt(pauta.unlikes) + 1;
       }
-      
-      this.presentToast('Pauta descurtida');
     }, unlike => {console.log(JSON.stringify(unlike, null, 1));});
   }
 
@@ -115,20 +94,12 @@ export class HomePage {
     this.navCtrl.push(NewCommentPage, {id: id, title: title});
   }
 
-  presentLoading() {
+  presentLoading(msg) {
     let loader = this.loadingCtrl.create({
-      content: "Aguarde...",
+      content: msg,
       duration: 3000
     });
     loader.present();
-  }
-
-  presentToast(msg) {
-    let toast = this.toastCtrl.create({
-      message: msg,
-      duration: 3000
-    });
-    toast.present();
   }
 
   like_number(id){

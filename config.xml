@@ -1,8 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="br.org.redelivre.delibera" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>MyApp</name>
-    <description>An awesome Ionic/Cordova app.</description>
+    <name>Delibera</name>
+    <description>Debates Online</description>
     <author email="cabelotaina@gmail.com" href="http://cabelotaina.github.io">Maurilio Atila</author>
+    <author email="jacson@passold.net.br" href="http://passold.net.br">Jacson Passold</author>
     <content original-src="index.html" src="http://192.168.0.3:8100" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
@@ -41,6 +42,7 @@
         <splash density="port-xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png" />
         <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
         <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
+        <icon density="hdpi" src="resources/android/icon/drawable-hdpi-icon.png" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
