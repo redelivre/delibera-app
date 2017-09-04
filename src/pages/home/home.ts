@@ -20,7 +20,7 @@ export class HomePage {
     this.presentLoading();
     this.serviceProvider.credentials("1");
     if (this.serviceProvider.isLoggedOff()){
-      this.serviceProvider.requestLogin();
+      //this.serviceProvider.requestLogin();
     }
     this.serviceProvider.credentials("2");
     this.serviceProvider.getPautas().then( pautas => {
@@ -82,16 +82,31 @@ export class HomePage {
     this.navCtrl.push(CommentsPage, {id: id, title: title});
   }
 
-  like(id){
-    this.serviceProvider.like(id).then( like => {
+  like(pauta){
+    this.serviceProvider.like(pauta.id).then( like => {
       console.log(JSON.stringify(like, null, 1));
+      if (pauta.liked === true){
+        pauta.liked = false;
+        pauta.likes = parseInt(pauta.likes) - 1;
+      } else {
+        pauta.liked = true;
+        pauta.likes = parseInt(pauta.likes) + 1;
+      }
       this.presentToast('Pauta curtida');
     }, like => {console.log(JSON.stringify(like, null, 1));});
   }
 
-  unlike(id){
-    this.serviceProvider.unlike(id).then( unlike => {
+  unlike(pauta){
+    this.serviceProvider.unlike(pauta.id).then( unlike => {
       console.log(JSON.stringify(unlike, null, 1));
+      if (pauta.unliked === true){
+        pauta.unliked = false;
+        pauta.unlikes = parseInt(pauta.unlikes) - 1;
+      } else {
+        pauta.unliked = true;
+        pauta.unlikes = parseInt(pauta.unlikes) + 1;
+      }
+      
       this.presentToast('Pauta descurtida');
     }, unlike => {console.log(JSON.stringify(unlike, null, 1));});
   }
@@ -102,7 +117,7 @@ export class HomePage {
 
   presentLoading() {
     let loader = this.loadingCtrl.create({
-      content: "Please wait...",
+      content: "Aguarde...",
       duration: 3000
     });
     loader.present();

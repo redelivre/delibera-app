@@ -8,13 +8,6 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card text-center>
-    <div class="or-label">
-      <img class="logo" src="http://delibera.redelivre.org.br/files/2016/05/logo-site-menu.png">
-      <strong></strong>
-    </div>
-    <button outline>Bem-vindo a plataforma de debate do Delibera</button>
-  </ion-card>
 	<ion-list>
 		<ion-card *ngFor="let pauta of pautas">
 		  <ion-card-content>
@@ -25,52 +18,58 @@
 		    </p>
 		  </ion-card-content>
 		  <ion-row>
-		    <ion-col col-7 *ngIf="isLoggedIn()">
-		      <button ion-button icon-left clear large id="notification-button">
-		        <a (click)="like(pauta.id)" >
-			        <ion-icon name="thumbs-up" *ngIf="pauta.liked == true" style="color:red">
-			        	<ion-badge id="notifications-badge" color="danger">{{pauta.likes}}</ion-badge>
-			        </ion-icon>
-			        <ion-icon name="thumbs-up" *ngIf="pauta.liked == false">
-			        	<ion-badge id="notifications-badge" color="danger">{{pauta.likes}}</ion-badge>
-			        </ion-icon>
-		        </a>
-		      </button>
-		    </ion-col>
-		    <ion-col col-5 *ngIf="isLoggedIn()">
-		      <button ion-button icon-left clear large id="notification-button">
-		        <a (click)="unlike(pauta.id)">
-			        <ion-icon name="thumbs-down" *ngIf="pauta.unliked == true">
-			        	<ion-badge id="notifications-badge" color="danger">{{pauta.unlikes}}</ion-badge>
-			        </ion-icon>
-			        <ion-icon name="thumbs-down" *ngIf="pauta.unliked == false">
-			        	<ion-badge id="notifications-badge" color="danger">{{pauta.unlikes}}</ion-badge>
-			        </ion-icon>
-		        </a>
-		      </button>
-		    </ion-col>
 
-		    <ion-col col-7 *ngIf="isLoggedIn()" style="padding:20px">
+		    <ion-col col-6 *ngIf="isLoggedIn()" style="padding:20px">
 		       Pauta em <strong>{{status(pauta.situacao)}}</strong>
 		    </ion-col>
 
+		    <ion-col col-6 *ngIf="isLoggedIn()" style="padding:20px">
+		       <strong>{{formatDateOld(pauta.date)}}</strong>
+		    </ion-col>
+
+
+				<ion-col col-2 *ngIf="isLoggedIn()">
+		      <button ion-button icon-left clear large id="notification-button">
+		        <a (click)="like(pauta)" >
+			        <ion-icon name="thumbs-up" *ngIf="pauta.liked" color="danger">
+			        	<ion-badge id="notifications-badge" color="danger">{{pauta.likes}}</ion-badge>
+			        </ion-icon>
+			        <ion-icon name="thumbs-up" *ngIf="!pauta.liked">
+			        	<ion-badge id="notifications-badge" color="danger">{{pauta.likes}}</ion-badge>
+			        </ion-icon>
+		        </a>
+		      </button>
+		    </ion-col>
+		    <ion-col col-2 *ngIf="isLoggedIn()">
+		      <button ion-button icon-left clear large id="notification-button">
+		        <a (click)="unlike(pauta)">
+			        <ion-icon name="thumbs-down" *ngIf="pauta.unliked" color="danger">
+			        	<ion-badge id="notifications-badge" color="danger">{{pauta.unlikes}}</ion-badge>
+			        </ion-icon>
+			        <ion-icon name="thumbs-down" *ngIf="!pauta.unliked">
+			        	<ion-badge id="notifications-badge" color="danger">{{pauta.unlikes}}</ion-badge>
+			        </ion-icon>
+		        </a>
+		      </button>
+		    </ion-col>
+		    <ion-col col-1>
+					<ion-list>
+					  <button ion-button icon-left clear large id="notification-button">
+					    <a (click)="goToAddComment(pauta.id, pauta.title.rendered)">
+					      <ion-icon name="text"></ion-icon>
+					    </a>
+					  </button>
+					</ion-list>
+		    </ion-col>
+
+
 		    <ion-col col-4 *ngIf="isLoggedIn()" (click)="goToComments(pauta.id, pauta.title.rendered)">
-		      <button ion-button icon-left clear small>
-		        <ion-icon name="text"></ion-icon>
+		      <button ion-button icon-left clear large>
+		        <ion-icon name="md-chatbubbles"></ion-icon>
 		        <div>Comentários</div>
 		      </button>
 		    </ion-col>
-		    <ion-col col-12>
-					<ion-list>
-					  <ion-item>
-					    {{formatDateOld(pauta.date)}}
-					    <button (click)="goToAddComment(pauta.id, pauta.title.rendered)" ion-button outline item-end icon-left>
-					      <ion-icon name="text"></ion-icon>
-					      Comentar
-					    </button>
-					  </ion-item>
-					</ion-list>
-		    </ion-col>
+
 		  </ion-row>
 		</ion-card>
 	</ion-list>
