@@ -56,8 +56,9 @@ export class RemoteServiceProvider {
   }
 
   addComments(comment){
+
     demoApi.restoreCredentials();
-    return demoApi.post( '/wp/v2/comments', comment );
+    return demoApi.post( '/wp/v2/comments', comment);
   }
 
   newComment(comment){

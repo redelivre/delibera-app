@@ -31,7 +31,7 @@ export class CommentsPage {
   }
 
   goToAddComment(comment, title){
-    this.navCtrl.push(NewCommentPage, {id: comment.post, title: title, parent: comment.id});
+    this.navCtrl.push(NewCommentPage, {id: comment.post, title: title, parent: comment.id, meta : [{"key":"delibera_comment_tipo" , "value":"discussao"}, {"key": "delibera_encaminha", "value": "S"}] });
   }
 
   presentLoading(msg) {
