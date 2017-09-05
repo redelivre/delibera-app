@@ -63,7 +63,7 @@ export class CommentsPage {
         comment.liked = true;
         //comment.likes = parseInt(comment.likes) + 1;
       }
-      this.presentToast('Pauta curtida');
+      this.presentToast('Comentário curtido');
     }, like => {
       console.log(JSON.stringify(like, null, 1));
     });
@@ -79,7 +79,7 @@ export class CommentsPage {
         //comment.unlikes = parseInt(comment.unlikes) + 1;
       }
       
-      this.presentToast('Pauta descurtida');
+      this.presentToast('Comentário descurtido');
     }, unlike => {console.log(JSON.stringify(unlike, null, 1));});
   }
 
