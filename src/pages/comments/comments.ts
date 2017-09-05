@@ -58,10 +58,10 @@ export class CommentsPage {
     this.serviceProvider.likeComment(comment.id).then( like => {
       if (comment.liked === true){
         comment.liked = false;
-        comment.likes = parseInt(comment.likes) - 1;
+        //comment.likes = parseInt(comment.likes) - 1;
       } else {
         comment.liked = true;
-        comment.likes = parseInt(comment.likes) + 1;
+        //comment.likes = parseInt(comment.likes) + 1;
       }
       this.presentToast('Pauta curtida');
     }, like => {
@@ -73,10 +73,10 @@ export class CommentsPage {
     this.serviceProvider.unlikeComment(comment.id).then( unlike => {
       if (comment.unliked === true){
         comment.unliked = false;
-        comment.unlikes = parseInt(comment.unlikes) - 1;
+        //comment.unlikes = parseInt(comment.unlikes) - 1;
       } else {
         comment.unliked = true;
-        comment.unlikes = parseInt(comment.unlikes) + 1;
+        //comment.unlikes = parseInt(comment.unlikes) + 1;
       }
       
       this.presentToast('Pauta descurtida');

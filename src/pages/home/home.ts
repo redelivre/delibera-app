@@ -20,7 +20,7 @@ export class HomePage {
     this.presentLoading("Aguarde..");
     //this.serviceProvider.credentials("1");
     if (this.serviceProvider.isLoggedOff()){
-      this.serviceProvider.requestLogin();
+      //this.serviceProvider.requestLogin();
     }
     //this.serviceProvider.credentials("2");
     this.serviceProvider.getPautas().then( pautas => {
@@ -30,13 +30,35 @@ export class HomePage {
 
   status(name) {
     if (name === "comresolucao"){
-      return "Resolução";
+      return "Com Resolução";
     }
     else if (name === "relatoria") {
       return "Relatoria";
     }
+    else if (name === "validacao"){
+      return "Validação";
+    }
+    else if (name === "encaminhamento" || name === "encaminhamento_selecionado"){
+      return "Encaminhamento";
+    }
+    else if (name === "voto"){
+      return "Votação";
+    }
+    else if (name === "resolucao"){
+      return "Resolução";
+    }
     else if (name === "discussao"){
       return "Discussão";
+    }
+  }
+
+  show(status){
+    console.log("Status: "+status)
+    if (this.isLoggedIn() && status === "resolucao"){
+      return false;
+    }
+    else if (this.isLoggedIn() && status === "discussao"){
+      return true;
     }
   }
 

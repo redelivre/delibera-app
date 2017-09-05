@@ -32,7 +32,7 @@
 	    </p>
 
 		  <ion-row text-center>
-				<ion-col col-offset-1 col-3 *ngIf="isLoggedIn()">
+				<ion-col col-offset-1 col-3 *ngIf="show(pauta.situacao)">
 		      <button ion-button icon-left clear large id="notification-button">
 		        <a (click)="like(pauta)" >
 			        <ion-icon name="thumbs-up" *ngIf="pauta.liked" color="danger">
@@ -44,7 +44,7 @@
 		        </a>
 		      </button>
 		    </ion-col>
-		    <ion-col col-3 *ngIf="isLoggedIn()">
+		    <ion-col col-3 *ngIf="show(pauta.situacao)">
 		      <button ion-button icon-left clear large id="notification-button">
 		        <a (click)="unlike(pauta)">
 			        <ion-icon name="thumbs-down" *ngIf="pauta.unliked" color="danger">
