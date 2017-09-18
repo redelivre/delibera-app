@@ -6,6 +6,8 @@ O delibera app permite utilizar o plugin do delibera pelo celular. Ele esta em d
 
 O codigo fonte esta na pasta src. Mas nem todos os arquivos são relevantes para o projeto, dado que alguns são gerados a cada compilação. Sendo assim apenas os arquivos fonte com extensão .ts, .scss e .html são relevantes para desenvolvedores que queiram realizar modificações neste projeto. Marcamos eles com asterisco na arvore abaixo.
 
+
+```bash
 src
 ├── app
 │   ├── app.component.js
@@ -77,6 +79,7 @@ src
 ├── service-worker.js
 └── theme
     └── variables.scss*
+```
 
 ## Como usar este projeto
 
