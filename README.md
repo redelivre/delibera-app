@@ -20,5 +20,16 @@ git clone
 npm install
 npm install -g bower
 bower install
+```
+## Como rodar no browser?
+```
 ionic serve
+```
+### Como rodar em um browser específico?
+```
+ionic serve -w firefox
+```
+## Como rodar no emulador android?
+```
+ionic cordova run android
 ```
