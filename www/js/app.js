@@ -10,7 +10,8 @@ angular.module('delibera-app', [
     'delibera-app.services',
     'delibera-app.filters',
     'angular-cache',
-    'wp-api-angularjs'
+    'wp-api-angularjs',
+    'ngCookies'
 ])
 
 .run(function($ionicPlatform) {
@@ -27,8 +28,9 @@ angular.module('delibera-app', [
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, CacheFactoryProvider, WpApiProvider) {
+.config(function($httpProvider, $stateProvider, $urlRouterProvider, $ionicConfigProvider, CacheFactoryProvider, WpApiProvider) {
 
+  //WpApiProvider.setBaseUrl('http://redelivre.pure.za/wp-json/');
   WpApiProvider.setBaseUrl('http://delibera.redelivre.org.br/wp-json/');
 
   angular.extend(CacheFactoryProvider.defaults, {
@@ -43,6 +45,23 @@ angular.module('delibera-app', [
   if( ionic.Platform.isAndroid() ) {
     $ionicConfigProvider.scrolling.jsScrolling(false);
   }
+
+  $httpProvider.interceptors.push( [ '$q', '$location', '$cookies', function( $q, $location, $cookies ) {
+    return {
+      'request': function( config ) {
+        config.headers = config.headers || {};
+        //Assume that you store the token in a cookie.
+        var globals = $cookies.getObject( 'globals' ) || {};
+        //If the cookie has the CurrentUser and the token
+        //add the Authorization header in each request
+        if ( globals.currentUser && globals.currentUser.token ) {
+          config.headers.Authorization = 'Bearer ' + globals.currentUser.token;
+        }
+        return config;
+      }
+    };
+  } ] );
+
 
   $stateProvider
 

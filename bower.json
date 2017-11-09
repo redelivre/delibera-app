@@ -7,6 +7,10 @@
   "dependencies": {
     "wp-api-angularjs": "shprink/wp-api-angularjs#^v2.0.0-rc2",
     "lodash": "^4.12.0",
-    "angular-cache": "^4.6.0"
+    "angular-cache": "^4.6.0",
+    "angular-cookies": "^1.5.5"
+  },
+  "resolutions": {
+    "angular": "1.5.3"
   }
 }
